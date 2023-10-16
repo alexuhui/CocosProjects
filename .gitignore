@@ -186,3 +186,5 @@ temp/
 
 #自动生成
 cocos2dx.srctrl*
+
+**/.cxx/
