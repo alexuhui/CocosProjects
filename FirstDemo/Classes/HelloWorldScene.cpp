@@ -24,8 +24,15 @@
 
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
+#include "base/CCEventCustom.h"
+
+#include <sstream>
+#include <iomanip> // 用于设置精度
 
 USING_NS_CC;
+
+
+const char* HelloWorld::EVENT_TEST = "event_test";
 
 Scene* HelloWorld::createScene()
 {
@@ -101,6 +108,28 @@ bool HelloWorld::init()
         this->addChild(label, 1);
     }
 
+    // deltaTimeLb
+    deltaTimeLb = Label::createWithTTF("deltaTimeLb", "fonts/Marker Felt.ttf", 24);
+    if (deltaTimeLb == nullptr)
+    {
+        problemLoading("'fonts/Marker Felt.ttf'");
+    }
+    else
+    {
+        auto lbSize = deltaTimeLb->getContentSize();
+        deltaTimeLb->setAnchorPoint(cocos2d::Vec2(0.0f, 1.0f));
+        deltaTimeLb->setWidth(120);
+
+        // position the label on the center of the screen
+        deltaTimeLb->setPosition(Vec2(origin.x + 20.0f,
+            origin.y + visibleSize.height - lbSize.height));
+
+        
+
+        // add the label as a child to this layer
+        this->addChild(deltaTimeLb, 1);
+    }
+
     // add "HelloWorld" splash screen"
     auto sprite = Sprite::create("HelloWorld.png");
     if (sprite == nullptr)
@@ -115,6 +144,16 @@ bool HelloWorld::init()
         // add the sprite as a child to this layer
         this->addChild(sprite, 0);
     }
+
+    //event test
+    _eventTest = new (std::nothrow) cocos2d::EventCustom(EVENT_TEST);
+    auto _listener = EventListenerCustom::create(EVENT_TEST, std::bind(&HelloWorld::onEventTest, this, std::placeholders::_1));
+
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(_listener, this);
+
+    // 注册update
+    scheduleUpdate();
+
     return true;
 }
 
@@ -130,4 +169,26 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
     //_eventDispatcher->dispatchEvent(&customEndEvent);
 
 
+}
+
+ void HelloWorld::update(float delta) 
+{
+    printf("hello world update, delta: %.4f\n", delta);
+    _eventTest->setUserData(&delta);
+    _eventDispatcher->dispatchEvent(_eventTest);
+}
+
+void HelloWorld::onEventTest(cocos2d::EventCustom* event)
+{
+    std::string str = "hello world scene is updating, delta time = ";
+    float* dt = (float*)(event->getUserData());
+    // 使用 std::stringstream 进行格式化
+    std::stringstream stream;
+    stream << std::fixed << std::setprecision(8) << *dt; // 保留两位小数
+    str += stream.str();
+
+    if (deltaTimeLb != nullptr)
+    {
+        deltaTimeLb->setString(str);
+    }
 }
