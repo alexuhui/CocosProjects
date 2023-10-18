@@ -33,6 +33,7 @@ USING_NS_CC;
 
 
 const char* HelloWorld::EVENT_TEST = "event_test";
+const char* HelloWorld::EVENT_TEST2 = "event_test2";
 
 Scene* HelloWorld::createScene()
 {
@@ -108,26 +109,62 @@ bool HelloWorld::init()
         this->addChild(label, 1);
     }
 
+    float posY = origin.y + visibleSize.height;
     // deltaTimeLb
-    deltaTimeLb = Label::createWithTTF("deltaTimeLb", "fonts/Marker Felt.ttf", 24);
+    deltaTimeLb = Label::createWithTTF("hello world scene is updating, delta time = deltaTimeLb   0", "fonts/Marker Felt.ttf", 24);
     if (deltaTimeLb == nullptr)
     {
         problemLoading("'fonts/Marker Felt.ttf'");
     }
     else
     {
-        auto lbSize = deltaTimeLb->getContentSize();
         deltaTimeLb->setAnchorPoint(cocos2d::Vec2(0.0f, 1.0f));
         deltaTimeLb->setWidth(120);
-
+        auto lbSize = deltaTimeLb->getContentSize();
         // position the label on the center of the screen
-        deltaTimeLb->setPosition(Vec2(origin.x + 20.0f,
-            origin.y + visibleSize.height - lbSize.height));
-
-        
+        deltaTimeLb->setPosition(Vec2(origin.x + 20.0f, posY));
+        posY -= lbSize.height + 200;
 
         // add the label as a child to this layer
         this->addChild(deltaTimeLb, 1);
+    }
+
+    // deltaTimeLb2
+    deltaTimeLb2 = Label::createWithTTF("deltaTimeLb2       00", "fonts/Marker Felt.ttf", 24);
+    if (deltaTimeLb2 == nullptr)
+    {
+        problemLoading("'fonts/Marker Felt.ttf'");
+    }
+    else
+    {
+        deltaTimeLb2->setAnchorPoint(cocos2d::Vec2(0.0f, 1.0f));
+        deltaTimeLb2->setWidth(120);
+        auto lbSize = deltaTimeLb2->getContentSize();
+        // position the label on the center of the screen
+        deltaTimeLb2->setPosition(Vec2(origin.x + 20.0f, posY));
+        posY -= lbSize.height + 200;
+
+        // add the label as a child to this layer
+        this->addChild(deltaTimeLb2, 1);
+    }
+
+    // deltaTimeLb3
+    deltaTimeLb3 = Label::createWithTTF("deltaTimeLb3       00", "fonts/Marker Felt.ttf", 24);
+    if (deltaTimeLb3 == nullptr)
+    {
+        problemLoading("'fonts/Marker Felt.ttf'");
+    }
+    else
+    {
+        deltaTimeLb3->setAnchorPoint(cocos2d::Vec2(0.0f, 1.0f));
+        deltaTimeLb3->setWidth(120);
+        auto lbSize = deltaTimeLb3->getContentSize();
+        // position the label on the center of the screen
+        deltaTimeLb3->setPosition(Vec2(origin.x + 20.0f, posY));
+        posY -= lbSize.height + 200;
+
+        // add the label as a child to this layer
+        this->addChild(deltaTimeLb3, 1);
     }
 
     // add "HelloWorld" splash screen"
@@ -148,8 +185,28 @@ bool HelloWorld::init()
     //event test
     _eventTest = new (std::nothrow) cocos2d::EventCustom(EVENT_TEST);
     auto _listener = EventListenerCustom::create(EVENT_TEST, std::bind(&HelloWorld::onEventTest, this, std::placeholders::_1));
-
     _eventDispatcher->addEventListenerWithSceneGraphPriority(_listener, this);
+
+    //event test 2
+    auto _listener2 = EventListenerCustom::create(EVENT_TEST2, [=](EventCustom* event) {
+        if (deltaTimeLb != nullptr)
+        {
+            static int eventCnt = 0;
+            deltaTimeLb2->setString("event test2 " + std::to_string(eventCnt++));
+        }
+    });
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(_listener2, this);
+
+
+    // event test listener3
+    auto _listener3 = EventListenerCustom::create(EVENT_TEST, [=](EventCustom* event) {
+        if (deltaTimeLb != nullptr)
+        {
+            static int eventCnt = 0;
+            deltaTimeLb3->setString("event test to listener3 " + std::to_string(eventCnt++));
+        }
+        });
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(_listener3, this);
 
     // 注册update
     scheduleUpdate();
@@ -173,9 +230,12 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 
  void HelloWorld::update(float delta) 
 {
-    printf("hello world update, delta: %.4f\n", delta);
-    _eventTest->setUserData(&delta);
-    _eventDispatcher->dispatchEvent(_eventTest);
+     printf("hello world update, delta: %.4f\n", delta);
+     _eventTest->setUserData(&delta);
+     _eventDispatcher->dispatchEvent(_eventTest);
+
+     EventCustom event2(EVENT_TEST2);
+     _eventDispatcher->dispatchEvent(&event2);
 }
 
 void HelloWorld::onEventTest(cocos2d::EventCustom* event)

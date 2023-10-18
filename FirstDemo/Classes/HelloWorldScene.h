@@ -46,6 +46,10 @@ private:
     cocos2d::EventCustom* _eventTest = nullptr;
     void onEventTest(cocos2d::EventCustom* event);
     cocos2d::Label* deltaTimeLb;
+    cocos2d::Label* deltaTimeLb2;
+    cocos2d::Label* deltaTimeLb3;
+
+    static const char* EVENT_TEST2;
 };
 
 #endif // __HELLOWORLD_SCENE_H__
