@@ -48,5 +48,8 @@ protected:
     static char* convertTCharToUtf8(const TCHAR* src);
 
     static LRESULT CALLBACK windowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+
+private:
+	const std::string defProjDir;
 };
 

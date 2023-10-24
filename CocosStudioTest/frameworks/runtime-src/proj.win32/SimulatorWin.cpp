@@ -39,6 +39,12 @@
 #define SIMULATOR_WITH_CONSOLE_AND_MENU 0
 #endif
 
+#if defined(_WINDOWS)
+#define DEFAULT_PROJECT_DIR "..\\..\\..\\"
+#else
+#define DEFAULT_PROJECT_DIR ""
+#endif
+
 USING_NS_CC;
 
 static WNDPROC g_oldWindowProc = NULL;
@@ -123,7 +129,9 @@ SimulatorWin::SimulatorWin()
     , _hwnd(NULL)
     , _hwndConsole(NULL)
     , _writeDebugLogFile(nullptr)
+	, defProjDir(DEFAULT_PROJECT_DIR)
 {
+	_project.setProjectDir(defProjDir);
 }
 
 SimulatorWin::~SimulatorWin()
@@ -595,6 +603,7 @@ void SimulatorWin::parseCocosProjectConfig(ProjectConfig &config)
 {
     // get project directory
     ProjectConfig tmpConfig;
+	tmpConfig.setProjectDir(defProjDir);
     // load project config from command line args
     vector<string> args;
     for (int i = 0; i < __argc; ++i)
@@ -623,6 +632,7 @@ void SimulatorWin::parseCocosProjectConfig(ProjectConfig &config)
     // parse config.json
     auto parser = ConfigParser::getInstance();
     auto configPath = tmpConfig.getProjectDir().append(CONFIG_FILE);
+	//CCLOG("tmpConfig.getProjectDir()");
     parser->readConfig(configPath);
 
     // set information
