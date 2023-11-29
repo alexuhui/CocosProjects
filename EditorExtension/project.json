@@ -1,0 +1,8 @@
+{
+  "engine": "cocos-creator-js",
+  "packages": "packages",
+  "name": "EditorExtension",
+  "id": "599a170c-2322-4472-b647-d4ceabddeb7e",
+  "version": "2.4.6",
+  "isNew": false
+}
