@@ -943,14 +943,14 @@ Node* CSLoader::nodeWithFlatBuffersFile(const std::string &fileName)
 Node* CSLoader::nodeWithFlatBuffersFile(const std::string &fileName, const ccNodeLoadCallback &callback)
 {
     std::string fullPath = FileUtils::getInstance()->fullPathForFilename(fileName);
-    
+    CCLOG("fullpath : %s", fullPath.c_str());
     CC_ASSERT(FileUtils::getInstance()->isFileExist(fullPath));
     
     Data buf = FileUtils::getInstance()->getDataFromFile(fullPath);
 
     if (buf.isNull())
     {
-        CCLOG("CSLoader::nodeWithFlatBuffersFile - failed read file: %s", fileName.c_str());
+        CCLOG("CSLoader::00000000000 nodeWithFlatBuffersFile - failed read file: %s", fileName.c_str());
         CC_ASSERT(false);
         return nullptr;
     }
