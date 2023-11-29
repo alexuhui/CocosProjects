@@ -3,6 +3,7 @@
 module.exports = {
     load() {
         // 当 package 被正确加载的时候执行
+        Editor.log(`Editor.Project.path : ${Editor.Project.path}`)
     },
 
     unload() {
@@ -10,10 +11,12 @@ module.exports = {
     },
 
     messages: {
-        'log-hello'() {
+        'log-hello'(event) {
+            Editor.log(`event : ${JSON.stringify(event)}`)
             Editor.log('Hello World!');
         },
-        'warn-hello'() {
+        'warn-hello'(event) {
+            Editor.log(`event : ${JSON.stringify(event)}`)
             Editor.warn('Hello World!');
         }
     },
