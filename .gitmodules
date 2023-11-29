@@ -1,0 +1,3 @@
+[submodule "EditorExtension/packages/CCSceneMenu"]
+	path = EditorExtension/packages/CCSceneMenu
+	url = git@github.com:caogtaa/CCSceneMenu.git
