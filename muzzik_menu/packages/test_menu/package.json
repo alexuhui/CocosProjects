@@ -1,0 +1,11 @@
+{
+  "name": "test_menu",
+  "version": "1.0.0",
+  "description": "The package template for getting started.",
+  "author": "Cocos Creator",
+  "main": "js/test_menu/main.js",
+  "main-menu": {
+  },
+  "dependencies": {
+  }
+}
