@@ -16,11 +16,13 @@ export default class TestView extends cc.Component {
     list: List = null;
     @property(List)
     list2: List = null;
+    @property(List)
+    list3: List = null;
 
     start () {
         let datas = []
         for (let i = 0; i < 1000; i++) {
-            datas.push({id : i, tag : "item" + (i + 1)})
+            datas.push({id : i, tag : "itemA" + (i + 1)})
         }
 
         this.list.setItemDatas(datas)
@@ -28,9 +30,11 @@ export default class TestView extends cc.Component {
 
         let datas2 = []
         for (let i = 0; i < 1000; i++) {
-            datas2.push({id : i, tag : "item" + (i + 1) , height : 50 + Math.random() * 100})
+            datas2.push({id : i, tag : "itemB" + (i + 1) , height : 50 + Math.random() * 100})
         }
         this.list2.setItemDatas(datas2)
+
+        this.list3.setItemDatas(datas)
     }
 
 }
