@@ -4,7 +4,6 @@
   "description": "menu extension",
   "author": "qianqiao",
   "main": "main.js",
-  "scene-script": "db://assets/extension/list/List.ts",
   "main-menu": {
 
   },

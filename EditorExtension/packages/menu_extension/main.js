@@ -41,8 +41,10 @@ var main;
                 let nodeUuids = Editor.Selection.curSelection("node");
                 let parent = nodeUuids[0]
                 createNode("ListView", parent, (list_uid) => { 
-                    Editor.Ipc.sendToPanel('scene', 'scene:add-component', list_uid, 'cc.ScrollView');
-                    Editor.Ipc.sendToPanel('scene', 'scene:add-component', list_uid, 'List');
+                    Editor.Ipc.sendToPanel('scene', 'scene:add-component', list_uid, 'cc.ScrollView', (p1, p2, p3) => {
+                        Editor.log(`add scrollview  p1: ${p1}  p2: ${p2}   p3: ${p3}`)
+                    });
+                    // Editor.Ipc.sendToPanel('scene', 'scene:add-component', list_uid, 'List');
                     createNode("Mask", list_uid, (mask_uid) => { 
                         createNode("centent", mask_uid, (centent_uid) => { 
                             Editor.log(`list_uid : ${list_uid}   mask_uid : ${mask_uid}    centent_uid : ${centent_uid}`)

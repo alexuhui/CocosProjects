@@ -34,7 +34,7 @@ enum SelectedType {
 export default class List extends cc.Component {
     //模板类型
     @property({ type: cc.Enum(TemplateType), tooltip: CC_DEV && '模板类型', })
-    private templateType: TemplateType = TemplateType.NODE;
+    private templateType: TemplateType = TemplateType.PREFAB;
     //模板Item（Node）
     @property({
         type: cc.Node,
