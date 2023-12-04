@@ -1,0 +1,8 @@
+{
+  "engine": "cocos-creator-js",
+  "packages": "packages",
+  "name": "ActionTree",
+  "id": "ce4e2c08-9515-4ae3-8738-119dbbd3dc7b",
+  "version": "2.4.6",
+  "isNew": false
+}
