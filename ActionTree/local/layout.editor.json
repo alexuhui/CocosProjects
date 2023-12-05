@@ -95,7 +95,6 @@
       "panels": [
         "hierarchy",
         "assets",
-        "cloud-function",
         "scene",
         "node-library",
         "console",
