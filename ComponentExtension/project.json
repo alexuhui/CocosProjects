@@ -1,0 +1,8 @@
+{
+  "engine": "cocos-creator-js",
+  "packages": "packages",
+  "name": "ComponentExtension",
+  "id": "0be2c1f0-e93b-4365-b7b2-9cb2ac779acc",
+  "version": "2.4.6",
+  "isNew": false
+}

@@ -19,7 +19,22 @@ export default class Math extends cc.Component {
     private attackAction = new Action_Atk('攻击');
     private defendAction = new Action_Defend('防御');
 
+    
+
     start() {
+        function* name() {
+            console.log('start -----------');
+            yield Wait(1);
+            console.log(Date.now().toLocaleString());
+            yield WaitMs(500);
+            console.log(Date.now().toLocaleString());
+        }
+        let cor = LoopCoroutine(name)
+        cor.start()
+
+        setTimeout(() => {
+            cor.stop()
+        }, 4000);
     }
 
 
