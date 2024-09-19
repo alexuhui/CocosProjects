@@ -14,12 +14,12 @@
         "children": [
           {
             "width": 459,
-            "height": 921.5,
+            "height": 924,
             "type": "dock-v",
             "children": [
               {
                 "width": 459,
-                "height": 317.828125,
+                "height": 318.6875,
                 "type": "panel",
                 "active": 0,
                 "children": [
@@ -28,7 +28,7 @@
               },
               {
                 "width": 459,
-                "height": 600.671875,
+                "height": 602.3125,
                 "type": "panel",
                 "active": 0,
                 "children": [
@@ -39,17 +39,17 @@
           },
           {
             "width": 980,
-            "height": 921.5,
+            "height": 924,
             "type": "dock-v",
             "children": [
               {
                 "width": 980,
-                "height": 461.25,
+                "height": 462,
                 "type": "dock-h",
                 "children": [
                   {
                     "width": 578,
-                    "height": 461.25,
+                    "height": 462,
                     "type": "panel",
                     "active": 0,
                     "children": [
@@ -58,7 +58,7 @@
                   },
                   {
                     "width": 399,
-                    "height": 461.25,
+                    "height": 462,
                     "type": "panel",
                     "active": 0,
                     "children": [
@@ -69,7 +69,7 @@
               },
               {
                 "width": 980,
-                "height": 457.25,
+                "height": 459,
                 "type": "panel",
                 "active": 0,
                 "children": [
@@ -82,7 +82,7 @@
           },
           {
             "width": 459,
-            "height": 921.5,
+            "height": 924,
             "type": "panel",
             "active": 0,
             "children": [
@@ -103,7 +103,8 @@
         "inspector",
         "cocos-services"
       ]
-    }
+    },
+    " common-asset-worker-worker": {}
   },
   "panels": {},
   "panelLabelWidth": {}
